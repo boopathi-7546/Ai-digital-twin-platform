@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: theme('colors.navy.900');
+    background-image: theme('backgroundImage.navy-radial');
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: theme('fontFamily.display');
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.twin.cyan');
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/[0.05] backdrop-blur-glass border border-white/10 rounded-xl2 shadow-glass;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-twin-violet/40 hover:shadow-glow;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-twin-gradient px-4 py-2.5
+           font-medium text-navy-950 transition-transform duration-200 hover:scale-[1.02]
+           active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15
+           bg-white/[0.04] px-4 py-2.5 font-medium text-ink-100 transition-colors duration-200
+           hover:bg-white/[0.08] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-white/10 bg-navy-800/60 px-3.5 py-2.5 text-ink-100
+           placeholder:text-ink-700 outline-none transition-colors duration-200
+           focus:border-twin-violet/60;
+  }
+
+  .label-field {
+    @apply mb-1.5 block text-sm font-medium text-ink-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+}
